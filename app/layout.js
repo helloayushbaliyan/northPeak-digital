@@ -23,7 +23,12 @@ export const metadata = {
   ],
   authors: [{ name: "NorthPeak Digital" }],
   creator: "NorthPeak Digital",
-  metadataBase: new URL("https://northpeakdigital.com"),
+  publisher: "NorthPeak Digital",
+  applicationName: "NorthPeak Digital",
+  metadataBase: new URL("https://northpeakdigital.com"), // Update this to your deployed URL
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -43,6 +48,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@NorthPeakDigital",
+    creator: "@NorthPeakDigital",
     title: "NorthPeak Digital — Premium Digital Agency",
     description:
       "We help startups and growing brands design, build, and scale premium digital experiences.",
@@ -51,6 +58,7 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -61,7 +69,10 @@ export const metadata = {
   },
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
+  category: "technology",
 };
 
 export default function RootLayout({ children }) {
