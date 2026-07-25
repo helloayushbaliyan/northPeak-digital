@@ -3,6 +3,7 @@
 import { contactInfo, footerLinks } from "@/constants/data";
 import Container from "./Container";
 import { ArrowUp } from "lucide-react";
+import { socialIconsMap } from "./SocialIcons";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -22,16 +23,19 @@ export default function Footer() {
               We help startups and growing brands design, build, and scale premium digital experiences.
             </p>
             <div className="flex gap-4">
-              {contactInfo.socials.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent/10 transition-colors"
-                  aria-label={social.label}
-                >
-                  <span className="text-sm font-medium">{social.label.charAt(0)}</span>
-                </a>
-              ))}
+              {contactInfo.socials.map((social, index) => {
+                const Icon = socialIconsMap[social.label];
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 rounded-full bg-[#1E293B] flex items-center justify-center text-gray-400 hover:text-accent hover:bg-accent/10 transition-colors"
+                    aria-label={social.label}
+                  >
+                    {Icon ? <Icon className="w-5 h-5" /> : <span className="text-sm font-medium">{social.label.charAt(0)}</span>}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -76,10 +80,17 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border-dark flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} NorthPeak Digital. All rights reserved.
-          </p>
-          
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
+            <p className="text-gray-500 text-sm">
+              © {new Date().getFullYear()} NorthPeak Digital. All rights reserved.
+            </p>
+            <p className="text-gray-500 text-sm">
+              <a href="https://digitalheroesco.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">
+                Built for Digital Heroes Training Task
+              </a>
+            </p>
+          </div>
+
           <button
             onClick={scrollToTop}
             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group"

@@ -7,6 +7,7 @@ import Section from "./Section";
 import Container from "./Container";
 import Button from "./Button";
 import { contactInfo } from "@/constants/data";
+import { socialIconsMap } from "./SocialIcons";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -96,15 +97,19 @@ export default function ContactForm() {
             </div>
 
             <div className="flex gap-6 mt-12">
-              {contactInfo.socials.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="text-gray-400 hover:text-accent transition-colors font-medium"
-                >
-                  {social.label}
-                </a>
-              ))}
+              {contactInfo.socials.map((social, index) => {
+                const Icon = socialIconsMap[social.label];
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="text-gray-400 hover:text-accent transition-colors"
+                    aria-label={social.label}
+                  >
+                    {Icon ? <Icon className="w-6 h-6" /> : social.label}
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
 
